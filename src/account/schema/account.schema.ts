@@ -14,7 +14,7 @@ export class Account extends Document {
     password: string;
 
     @Prop()
-    isActive: boolean;
+    status: string;
 
 }
 
