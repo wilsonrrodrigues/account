@@ -1,4 +1,5 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
+import { OnboardingNewOffice } from './dto/onboarding-new-office.dto';
 import { OfficeService } from './office.service';
 import { Office } from './schema/office.schema';
 
@@ -9,7 +10,12 @@ export class OfficeController {
     ) {}
 
     @Post()
-    async create(@Body() office: Office): Promise<Office> {
-        return this.officeService.create(office);
+    async onboarding(@Body() office: OnboardingNewOffice): Promise<Office> {
+        return this.officeService.onboarding(office);
+    }
+
+    @Get()
+    async getAll() : Promise<Office[]> {
+        return this.officeService.getAll();
     }
 }
