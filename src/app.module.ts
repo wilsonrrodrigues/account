@@ -8,7 +8,7 @@ import { PlanModule } from './plan/plan.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/cadastro'), 
+    MongooseModule.forRoot(`${process.env.MONGO_URI}/${process.env.MONGO_DATABASE}`), 
     AccountModule, 
     OfficeModule, 
     PlanModule

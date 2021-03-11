@@ -1,8 +1,12 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document} from 'mongoose';
 
+export type AccountDocument = Account & Document;
+
 @Schema()
-export class Account extends Document {
+export class Account {
+
+    _id?: string;
 
     @Prop()
     name: string;
@@ -13,8 +17,19 @@ export class Account extends Document {
     @Prop()
     password: string;
 
-    @Prop()
-    status: string;
+    @Prop({
+        type: String,
+        enum: ['active','inactice','validation_email'],
+        default: 'validation_email'
+    })
+    status?: string;
+
+    @Prop({
+        type: String,
+        enum: ['admin','user','owner'],
+        default: 'user'
+    })
+    type: string;
 
 }
 
