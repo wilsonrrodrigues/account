@@ -29,11 +29,15 @@ export class OfficeService {
 
         console.log(account._id);
 
-        return this.create({officeName, owner: account, plan : 'Plano', status: 'active' });
+        return this.create({officeName, owner: account});
 
     }
 
     async getAll() : Promise<Office[]>{
         return this.officeModel.find({}).populate({path: 'owner', select: '_id name email', model: Account.name}).exec();
+    }
+
+    async findById(id: string): Promise<Office> {
+        return this.officeModel.findById(id);  
     }
 }

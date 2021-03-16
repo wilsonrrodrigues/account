@@ -14,4 +14,7 @@ export class AccountService {
         return createdAccount.save();
     }
 
+    async findById(id: string): Promise<Account> {
+        return this.accountModel.findById(id);       
+    }
 }

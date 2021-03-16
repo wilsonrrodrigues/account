@@ -23,7 +23,7 @@ RUN curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
 USER node
 
 WORKDIR /home/node/app
-RUN chmod +x .docker/entrypoint.sh
+
 
 EXPOSE 3000
 EXPOSE 9229

@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { AccountService } from './account.service';
 import { Account } from './schema/account.schema';
 
@@ -13,4 +13,8 @@ export class AccountController {
         return this.accountService.create(account);
     }
 
+    @Get(':id') 
+    async findById(@Param('id') id: string): Promise<Account>{
+        return this.accountService.findById(id);
+    }
 }

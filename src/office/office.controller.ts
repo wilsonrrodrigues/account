@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { OnboardingNewOffice } from './dto/onboarding-new-office.dto';
 import { OfficeService } from './office.service';
 import { Office } from './schema/office.schema';
@@ -18,4 +18,9 @@ export class OfficeController {
     async getAll() : Promise<Office[]> {
         return this.officeService.getAll();
     }
+
+    @Get(':id') 
+    async findById(@Param('id') id: string): Promise<Office>{
+        return this.officeService.findById(id);
+    } 
 }
