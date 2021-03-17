@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Account, AccountDocument } from './schema/account.schema';
@@ -17,4 +17,16 @@ export class AccountService {
     async findById(id: string): Promise<Account> {
         return this.accountModel.findById(id);       
     }
+
+    async validateUser(email: string, pass : string): Promise<Account> {
+        const account = await this.accountModel.findOne({email}).exec();       
+
+        if(!account || account.password != pass)
+            return null;
+
+        const {password, ...rest} = account;
+
+        return account;
+    }
+
 }
