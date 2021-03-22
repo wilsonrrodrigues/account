@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { JwtAuthGuard } from 'src/auth/jwt.guard';
 import { OnboardingNewOffice } from './dto/onboarding-new-office.dto';
 import { OfficeService } from './office.service';
@@ -11,6 +12,7 @@ export class OfficeController {
     ) {}
 
     @Post()
+    //@UseGuards(RolesGuard)
     async onboarding(@Body() office: OnboardingNewOffice): Promise<Office> {
         return this.officeService.onboarding(office);
     }

@@ -1,6 +1,5 @@
         
 import { Controller, Post, Req, UseGuards } from "@nestjs/common";
-import { AuthGuard } from "@nestjs/passport";
 import { LocalAuthGuard } from "./local.guard";
 import { AuthService } from "./services/auth.service";
 
